@@ -4,9 +4,7 @@ Proyecto de desarrollo de un e-commerce para una empresa de distribucion de comp
 ## Tipografica principal 
 Noto Sans
 ## Paleta de colores
-#efb810
-#f3c332
-#155db1
-#2196f3
+![image](https://github.com/wandamol1405/WandaMolina-ElectroCor/assets/128328090/25214e78-1a5a-4da2-b2c4-4dcc6036f146)
+
 ## Brand
 ElectroCor 
