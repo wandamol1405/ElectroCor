@@ -4,7 +4,7 @@ Proyecto de desarrollo de un e-commerce para una empresa de distribucion de comp
 ## Tipografica principal 
 Noto Sans
 ## Paleta de colores
-![image](../components.png)
+![image](components.png)
 
 ## Brand
 ElectroCor 
