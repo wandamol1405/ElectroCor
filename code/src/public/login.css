@@ -1,0 +1,90 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color: #EBEBEB;
+    font-family: 'Roboto Flex Normal';
+    color: #4B484D;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.section{
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    width: 95vw;
+    padding: 2rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 1rem;
+}
+.section h4{
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 1.5rem;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: baseline;
+    gap:1.5rem;
+    height: 60vh;
+}
+.form input{
+    width: 50vw;
+    padding: 0.9rem;
+    background-color: #E6E2E4;
+    border-radius: 30px;
+    border: 1px solid #C0C0C0;
+    font-size: 1rem;
+}
+.form label{
+    font-size: 1.1rem;
+}
+.form button{
+    padding: 0.8rem 2rem;
+    background-color: #004E98;
+    color: #EBEBEB;
+    border: 0;
+    border-radius: 7px;
+    font-size: 1.2rem;
+}
+.form button:hover{
+    background-color: #005E98;
+}
+.register, .recover-password{
+    text-align: center;
+    font-size: 1.1rem;
+    margin: 1rem;
+}
+
+@media(min-width:1080px){
+    .section{
+        width: 80vw;
+    }
+    .section h4{
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    .form label{
+        font-size: 1.3rem;
+    }
+    .form{
+        gap: 2rem;
+    }
+    .form button{
+        padding: 1rem 2rem;
+        font-size: 1.4rem;
+        margin-top: 1rem;
+    }
+    .form input{
+        width: 40vw;
+    }
+    .register, .recover-password{
+        font-size: 1.3rem;
+    }
+}
+

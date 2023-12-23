@@ -1,0 +1,123 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color: #EBEBEB;
+    font-family: 'Roboto Flex Normal';
+    color: #4B484D;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.products-description{
+    height: 70vh;
+}
+.buy-cart, .product, .resume{
+    padding: 1.5rem;
+    background-color: #FFFFFF;
+    margin: 1rem;
+    border-radius: 10px;
+}
+.buy-cart h3{
+    text-align: center;
+    font-size: 1.6rem;
+}
+.product img{
+    width: 20vw;
+}
+.product{
+    display: flex;
+    flex-direction: row;
+    gap:2rem;
+    padding: 2rem;
+}
+.description{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.description h5{
+    font-size: 1.4rem;
+}
+.description button{
+    width: 9vw;
+    font-size: 1rem;
+    background-color: transparent;
+    border: 0;
+    text-align: left;
+    color: #004E98;
+}
+.description button:hover{
+    color: #0e94ca;
+}
+.count-price{
+    display: flex;
+    flex-direction: row;
+    gap:10rem;
+}
+form input{
+    width: 60px;
+    height: 30px;
+    border: 1px solid #C0C0C0;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: center;
+}
+.count-price h4{
+    font-size: 1.4rem;
+}
+.resume table{ 
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 1rem;
+    font-size: 1.4rem;
+}
+th:first-child {
+    text-align: left;
+}
+td:last-child{
+    text-align: right;
+}
+th:last-child{
+    text-align: right;
+}
+.resume button{
+    display: block;
+    margin: 20px auto;
+    border-radius: 10px;
+    border: 0;
+    font-size: 1.3rem;
+    padding: 1rem 2rem;
+    color: #FFFFFF;
+    background-color: #004E98;
+}
+.resume button:hover{
+    background-color: #006E98;
+}
+@media(min-width:1080px){
+.buy-cart{
+    font-size: 1.5rem;
+}
+.products{
+    display: flex;
+    flex-direction: row;
+}
+.products img{
+    width: 10vw;
+}
+.description h5{
+    font-size: 1.5rem;
+}
+.description button, form label{
+    font-size: 1.2rem;
+}
+.count-price{
+    gap:15rem;
+}
+.count-price h4{
+    font-size: 1.6rem;
+}
+.resume{
+    height: 30vh;
+}
+}

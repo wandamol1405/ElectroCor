@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="footer.css">
+</head>
+<body>
+    <header>
+        <div class="menu">
+          <button>
+            <img src="../resources/menu.png" />
+          </button>
+        </div>
+        <div class="logo">
+          <img src="../resources/logo.png" />
+        </div>
+        <div class="cart">
+          <button>
+            <img src="../resources/cart.png" />
+          </button>
+        </div>
+    </header>
+    <section>
+        <div class="buy-cart">
+            <h3>Carrito de compras</h3>
+        </div>
+        <div class="products">
+        <div class="products-description">
+        <div class="product">
+            <div class="image">
+                <img src="../resources/product.jpg">
+            </div>
+            <div class="description">
+                <h5>Kit arduino Robotic RFID 39 componentes</h5>
+                <button>Eliminar</button>
+                <div class="count-price">
+                    <form action="product-count">
+                        <label for="count">Cantidad:</label>
+                        <input type="number" name="count" min="1" max="10">
+                    </form>
+                    <h4>$ 40.000</h4>
+                </div>
+            </div>
+        </div>
+        <div class="product">
+            <div class="image">
+                <img src="../resources/product.jpg">
+            </div>
+            <div class="description">
+                <h5>Tester Digital Ja Dt-830d Multimetro con Buzzer</h5>
+                <button>Eliminar</button>
+                <div class="count-price">
+                    <form action="product-count">
+                        <label for="count">Cantidad:</label>
+                        <input type="number" name="count" min="1" max="10">
+                    </form>
+                    <h4>$ 8.000</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="resume">
+            <table>
+                <tr>
+                    <td>Productos</th>
+                    <td>$ 48.000</td>
+                </tr>
+                <tr>
+                    <td>Envío</th>
+                    <td>Gratis</td>
+                </tr>
+                <tr>
+                    <th>Total</th>
+                    <th>$ 48.000</td>
+                </tr>
+            </table>
+            <button class="submit">Continuar con la compra</button>
+        </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <h6>Redes</h6>
+        <div class="redes">
+            <button>Instagram<button>
+            <button>Facebook</button>
+        </div>
+        <p>Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>
