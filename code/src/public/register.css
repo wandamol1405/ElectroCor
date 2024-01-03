@@ -57,17 +57,14 @@ body{
     border-radius: 7px;
     font-size: 1.2rem;
     margin:1rem;
+    align-content: center;
 }
 .section button:hover{
     background-color: #005E98;
 }
-.section .newsletter{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.newsletter{
     margin: 1.5rem;
     font-size: 1.2rem;
-    gap:1rem
 }
 .newsletter input{
     width: 20px;
@@ -107,6 +104,9 @@ body{
     }
     .newsletter label{
         font-size: 1.4rem;
+    }
+    .newsletter{
+        display:inline-block
     }
 }
 
