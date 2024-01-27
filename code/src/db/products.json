@@ -1,0 +1,14 @@
+[
+  {
+    "id": "07515937-18d7-48e9-906c-45639ed9996a",
+    "name": "Resistencia 150ohm",
+    "price": "3000",
+    "description": "60 resistencias"
+  },
+  {
+    "id": "c0a012d5-bf1d-4648-bd16-24f7e80cb043",
+    "name": "Capacitor 10uF",
+    "price": "2000",
+    "description": "10 capacitores"
+  }
+]

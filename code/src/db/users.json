@@ -1,0 +1,22 @@
+[
+  {
+    "id": "5eaca828-a015-4348-b2e9-e07da9dc4f71",
+    "name": "Wanda",
+    "surname": "Molina",
+    "email": "wandamol14@gmail.com",
+    "username": "wandamol14",
+    "password": "$2b$10$ju5MoCRQ7eMhqlNBsSRy6us5ODKL5K7GF4VOi6e4Kzqc1ROYg18eS",
+    "birth-date": "2002-05-14",
+    "cp": "5000"
+  },
+  {
+    "id": "67d8d260-9d01-40e1-9ba8-13f2da4480c5",
+    "name": "admin",
+    "surname": "admin",
+    "email": "admin@gmail.com",
+    "username": "admin",
+    "password": "$2b$10$f0eQnNQe4dX379NVg7ZCoO2K1eUnL2PdnhSFP6YGMYBFLtRvSYHG6",
+    "birth-date": "1999-12-31",
+    "cp": "5000"
+  }
+]
