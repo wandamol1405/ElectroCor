@@ -11,8 +11,8 @@ usersRouter.get("/", validatorAdmin, getUsers);
 
 usersRouter.get("/:id", validatorAdmin, getUserById);
 
-usersRouter.put("/:username", updateUser);
+usersRouter.put("/:id", updateUser);
 
-usersRouter.delete("/:username", deleteUser);
+usersRouter.delete("/:id", deleteUser);
 
 module.exports = usersRouter;

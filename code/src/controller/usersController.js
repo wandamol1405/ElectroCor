@@ -24,15 +24,15 @@ const getUserById = (req, res) =>{
 }
 
 const updateUser = (req, res) => {
-    const {username}=req.params;
+    const {id}=req.params;
     const user = req.body;
-    User.updateUser(username, user);
+    User.updateUser(id, user);
     res.json({msg:"Usuario actualizado correctamente"});
 }
 
 const deleteUser = (req,res)=>{
-    const { username } = req.params;
-    User.removeUser(username);
+    const { id } = req.params;
+    User.removeUser(id);
     res.json({msg: "Usuario eliminado correctamente"}); 
 }
 

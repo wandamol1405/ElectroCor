@@ -22,9 +22,9 @@ const User = {
         const usuario = usuarios.find((user)=> user.id === id);
         return usuario;
     },
-    updateUser: function(username, user){
+    updateUser: function(id, user){
         const usuarios = readFileJSON(dbFile);
-        const indexUsuario = usuarios.findIndex((user)=> user.username === username);
+        const indexUsuario = usuarios.findIndex((user)=> user.id === id);
         const hashPassword = bcrypt.hashSync(user.password, 10);
         user.password = hashPassword;
         usuarios[indexUsuario]={
@@ -33,9 +33,9 @@ const User = {
         }
         writeFileJSON(dbFile, usuarios);
     },
-    removeUser: function(username){
+    removeUser: function(id){
         const usuarios = readFileJSON(dbFile);
-        const indexUsuario = usuarios.findIndex((user)=>user.username === username);
+        const indexUsuario = usuarios.findIndex((user)=>user.id === id);
         usuarios.splice(indexUsuario, 1);
         writeFileJSON(dbFile, usuarios);
     }
