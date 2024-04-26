@@ -33,8 +33,10 @@ const FilterContainer = styled.div`
   }
 
   @media (min-width: 1080px) {
+    width:58vw;
     input, select{
-      width:13vw;
+      width:10vw;
+      padding: 0.9rem;
     }
     label{
       font-size: 1rem;

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
 
 const HeaderContainer = styled.header`
@@ -9,11 +10,6 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   align-content: space-evenly;
-
-  button {
-    background-color: transparent;
-    border: 0;
-  }
 
   .menu, .cart {
     margin: 0 2rem;
@@ -39,18 +35,14 @@ function Navbar() {
   return (
     <HeaderContainer>
       <div className="menu">
-        <button>
           <img src="../resources/user.png"/>
-        </button>
       </div>
-      <div className="logo">
+      <Link to={`/`} className="logo">
         <img src="../resources/logo.png"/>
-      </div>
-      <div className="cart">
-        <button>
+      </Link>
+      <Link to={`/cart`} className="cart">
           <img src="../resources/cart.png"/>
-        </button>
-      </div>
+      </Link>
     </HeaderContainer>
   )
 }

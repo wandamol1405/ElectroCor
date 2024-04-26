@@ -36,6 +36,8 @@ const Product = styled.div`
 `;
 
 const TitleLinked = styled(Link)`
+text-decoration: none;
+color: #4b484d;
 font-size: 1.4rem;
 @media (min-width: 1080px) {
   font-size: 1.1rem;

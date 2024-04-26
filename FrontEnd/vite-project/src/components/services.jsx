@@ -34,6 +34,7 @@ const ServicesContainer = styled.div`
   }
 
   @media (min-width: 1080px) {
+    width: 58vw;
     .metodos-pago img,
     .servicio-tecnico img {
       width: 6rem;
@@ -43,7 +44,7 @@ const ServicesContainer = styled.div`
       width: 10rem;
       height: 6rem;
     }
-    .serv p {
+    p {
       font-size: 1.1rem;
     }
     .product-title {

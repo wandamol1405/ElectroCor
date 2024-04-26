@@ -9,6 +9,8 @@ justify-content: space-around;
 gap: 20px;
 padding: 1rem;
 background-color: #f4f4f4;
+@media (min-width: 1080px) {
+  width: 59vw;
 `;
 
 function ProductsContainer({ data = [] }) {

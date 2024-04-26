@@ -16,7 +16,7 @@ const HomeSection = styled.section`
   gap: 1rem;
 
   .banner img {
-    width: 90vw;
+    width: 80vw;
     height: 30%;
     border-radius: 10px;
   }
@@ -34,8 +34,11 @@ const HomeSection = styled.section`
 
   @media (min-width: 1080px) {
     .banner img {
-      width: 77vw;
+      width: 60vw;
       height: 25rem;
+    }
+    .product-title{
+      width:58vw;
     }
   }
 `;
@@ -45,20 +48,23 @@ const PageExplorer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  width: 77vw;
+  width: 80vw;
   background-color: #ffffff;
   border-radius: 10px;
   padding: 0.5rem;
   font-family: "Roboto Flex Normal";
   color: #4b484d;
   font-size: 1.2rem;
+  @media (min-width: 1080px) {
+    width: 60vw;
+  }
 `;
 
 function Home() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPage, setProductsPage] = useState(4);
+  const [productsPage, setProductsPage] = useState(6);
 
   function filterProducts(name, price, category, order) {
     let newProducts = products.filter((prod) => {
@@ -73,8 +79,6 @@ function Home() {
 
     if (category > 0) {
       newProducts = newProducts.filter((prod) => {
-        console.log(prod.id_category);
-        console.log(category);
         return prod.id_category == category;
       });
     }
@@ -94,7 +98,6 @@ function Home() {
     async function getProducts() {
       const response = await fetch("http://localhost:3000/products");
       const prod = await response.json();
-      console.log(prod.data);
       setProducts(prod.data);
       setFilteredProducts(prod.data);
     }

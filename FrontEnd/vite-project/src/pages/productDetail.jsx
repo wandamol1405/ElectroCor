@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import FormButton from "../components/formButton";
+import useCartStore from '../store/useCart'
 
 const ProductDetailContainer = styled.section`
   box-sizing: border-box;
@@ -16,7 +17,7 @@ const ProductDetailContainer = styled.section`
   font-family: "Roboto Flex Normal";
 
   .product-img img {
-    width: 85vw;
+    width: 50vw;
   }
   .product-general {
     display: flex;
@@ -66,7 +67,7 @@ const ProductDetailContainer = styled.section`
     gap: 5rem;
 
     .product-img img {
-      width: 35vw;
+      width: 30vw;
     }
 
     .buttons button {
@@ -75,14 +76,15 @@ const ProductDetailContainer = styled.section`
     .buttons {
       margin-top: 4vh;
     }
-
     margin: auto; 
   }
+  margin: auto;
 `;
 
 function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState();
+  const {addItem} = useCartStore();
 
   useEffect(() => {
     async function getProducts() {
@@ -92,6 +94,7 @@ function ProductDetail() {
     }
     getProducts();
   }, []);
+  console.log(product);
   return (
     <ProductDetailContainer>
       <div className="product-img">
@@ -104,7 +107,7 @@ function ProductDetail() {
         </div>
         <div className="buttons">
           <FormButton className="buy">Comprar ahora</FormButton>
-          <FormButton className="toCart">Agregar al carrito</FormButton>
+          <FormButton onClick={()=>{addItem(product)}} className="toCart">Agregar al carrito</FormButton>
           <div className="product-detail">
             <h4 style={{ fontSize: "2rem", textAlign:"center"}}>Especificaciones</h4>
             <p style={{ fontSize: "1.5rem" }}>
