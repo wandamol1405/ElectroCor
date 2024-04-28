@@ -1,6 +1,7 @@
 const { body, validationResult } = require('express-validator');
 const { readFileJSON } = require('../model');
 const bcrypt = require("bcrypt");
+const { getUsersArray } = require('../controller/usersController');
 
 const validatorRegisterRules = [
     body("first_name").notEmpty().isString().withMessage("Nombre invalido"), 
@@ -25,23 +26,32 @@ const validatorRegisterUser=(req, res, next)=>{
     next();
 }
 
-const validatorLoginUser=(req, res, next)=>{
-    const {username, password} = req.body;
+const validatorLoginUser = async (req, res, next) => {
+    const { usuario, password } = req.body;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array()[0].msg });
     }
-    const users = readFileJSON("users.json");
-    const user = users.find((user) => user.username === username);
-    if (!user) {
-    return res.status(400).json({ errors: "Credenciales invalidas"});
-    } 
-    const isValidPassword = bcrypt.compareSync(password, user.password);
-    if (!isValidPassword) {
-    return res.status(400).json({ errors: "Credenciales invalidas"});
+  
+    try {
+      const users = await getUsersArray();
+      const user = users.find((user) => user.usuario === usuario);
+      if (!user) {
+        return res.status(400).json({ errors: "Credenciales inválidas" });
+      }
+  
+      const isValidPassword = bcrypt.compareSync(password, user.password);
+      if (!isValidPassword) {
+        return res.status(400).json({ errors: "Credenciales inválidas" });
+      }
+  
+      next();
+    } catch (error) {
+      console.error("Error al validar usuario:", error);
+      return res.status(500).json({ errors: "Error interno del servidor" });
     }
-    next();
-}
+  };
+  
 
 const validatorAdmin=(req, res,next)=>{
     const username = req.session.username;

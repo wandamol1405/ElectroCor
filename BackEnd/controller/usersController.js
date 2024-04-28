@@ -11,14 +11,25 @@ const addUser = async (req, res)=>{
 
 const login = (req, res)=>{
     const user = req.body;
-    req.session.username = user.username;
-    res.json({msg: `Bienvenido ${req.session.username}!`})
+    req.session.username = user.usuario;
+    res.redirect("http://localhost:5173/loginSuccesful")
 }
 
 const getUsers = async (req, res) =>{
     const users = await User.findAll();
     res.json({msg:"Usuarios registrados", data: users});
 }
+
+async function getUsersArray() {
+    try {
+      const users = await User.findAll(); 
+      const usersArray = users.map(user => user.toJSON()); 
+      return usersArray;
+    } catch (error) {
+      console.error("Error al obtener usuarios:", error);
+      return []; 
+    }
+  }
 
 const getUserById = async (req, res) =>{
     const { id } = req.params;
@@ -43,4 +54,4 @@ const deleteUser = async(req,res)=>{
     res.json({msg: "Usuario eliminado correctamente"}); 
 }
 
-module.exports = {addUser, login, getUsers, getUserById, updateUser, deleteUser};
+module.exports = {addUser, login, getUsers, getUserById, updateUser, deleteUser, getUsersArray};
