@@ -34,9 +34,9 @@ const HeaderContainer = styled.header`
 function Navbar() {
   return (
     <HeaderContainer>
-      <div className="menu">
+      <Link to={`/login`} className="menu">
           <img src="../resources/user.png"/>
-      </div>
+      </Link>
       <Link to={`/`} className="logo">
         <img src="../resources/logo.png"/>
       </Link>

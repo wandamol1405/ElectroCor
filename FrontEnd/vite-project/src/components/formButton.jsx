@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const FormButton = styled.button`
-
   padding: 0.8rem 1rem;
   background-color: #004E98;
   color: #EBEBEB;

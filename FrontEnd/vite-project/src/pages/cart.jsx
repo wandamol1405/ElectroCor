@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import CardCart from "../components/cardCart";
 import useCartStore from "../store/useCart";
 import styled from "styled-components";
+import Title from "../components/title";
+import useLogin from "../store/useLogin";
+import FormButton from "../components/formButton";
+import { useNavigate } from "react-router-dom";
 
 const CartContainer = styled.section`
   box-sizing: border-box;
@@ -12,22 +16,18 @@ const CartContainer = styled.section`
   flex-direction: column;
   align-items: center;
 
-  .buy-cart,
   .resume {
     padding: 1.5rem;
     background-color: #ffffff;
     margin: 1rem;
     border-radius: 10px;
-    width:75vw;
+    width: 75vw;
   }
-  .buy-cart, h2 {
+  h2 {
     text-align: center;
     font-size: 1.6rem;
   }
-  .count-price h4 {
-    font-size: 1.4rem;
-  }
-  .resume{
+  .resume {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -38,10 +38,10 @@ const CartContainer = styled.section`
     border-spacing: 1rem;
     font-size: 1.4rem;
   }
-  .products-description{
+  .products-description {
     display: flex;
     flex-direction: column;
-    gap:1rem;
+    gap: 1rem;
   }
   th:first-child {
     text-align: left;
@@ -52,34 +52,24 @@ const CartContainer = styled.section`
   th:last-child {
     text-align: right;
   }
-  .resume button {
-    display: block;
-    margin: 20px auto;
-    border-radius: 10px;
-    border: 0;
+  button {
     font-size: 1.3rem;
-    padding: 1rem 2rem;
-    color: #ffffff;
-    background-color: #004e98;
-  }
-  .resume button:hover {
-    background-color: #006e98;
   }
   @media (min-width: 1080px) {
     height: 100vh;
-    .buy-cart, h2 {
+    h2 {
       font-size: 1.5rem;
     }
     .products {
       display: flex;
       flex-direction: row;
-      align-items:center;
+      align-items: center;
     }
     .products img {
       width: 10vw;
     }
     .resume {
-      width:20vw;
+      width: 20vw;
     }
   }
 `;
@@ -89,28 +79,44 @@ function Cart() {
   const [price, setPrice] = useState(0);
   const products = Object.values(items);
   const costDelivery = "2000";
+  const { username } = useLogin();
+  const navigate = useNavigate();
+  const [cantBuy, setCantBuy] = useState(false);
+  const [withoutProducts, setwithoutProducts] = useState(false);
+
+  function handleSubmit() {
+    if (!username) {
+      setCantBuy(true);
+    } else if (!price) {
+      setwithoutProducts(true);
+    } else {
+      navigate("/confirmBuy");
+    }
+  }
 
   useEffect(() => {
-    const totalPrice = products.reduce((acc, p) => acc + parseFloat(p.price)*parseInt(p.quantity), 0);
+    const totalPrice = products.reduce(
+      (acc, p) => acc + parseFloat(p.price).toFixed(2) * parseInt(p.quantity),
+      0
+    );
     setPrice(totalPrice);
   }, [products]);
 
   return (
     <CartContainer>
-      <div className="buy-cart">
-        <h3>Carrito de compras</h3>
-      </div>
+      <Title>
+        <h1>Carrito de compras</h1>
+      </Title>
+      {cantBuy && <Title style={{backgroundColor: "#FFCCCC"}}><h2>Debe ingresar para realizar la compra</h2></Title>}
+      {withoutProducts && <Title style={{backgroundColor: "#FFCCCC"}}><h1>No hay productos en el carrito</h1></Title>}
       <div className="products">
         <div className="products-description">
           {products.map((p) => (
-            <CardCart
-              key={p.id_product}
-              product={p}
-            />
+            <CardCart key={p.id_product} product={p} />
           ))}
         </div>
         <div className="resume">
-            <h2>Resumen de compra</h2>
+          <h2>Resumen de compra</h2>
           <table>
             <tbody>
               <tr>
@@ -119,15 +125,25 @@ function Cart() {
               </tr>
               <tr>
                 <td>Envío</td>
-                <td>{price > 10000 || price == 0 ? "Gratis" : `$${costDelivery}`}</td>
+                <td>
+                  {price > 10000 || price == 0 ? "Gratis" : `$${costDelivery}`}
+                </td>
               </tr>
               <tr>
                 <th>Total</th>
-                <th>${price + (price > 10000 || price == 0 ? 0 : parseFloat(costDelivery))}</th>
+                <th>
+                  $
+                  {price +
+                    (price > 10000 || price == 0
+                      ? 0
+                      : parseFloat(costDelivery))}
+                </th>
               </tr>
             </tbody>
           </table>
-          <button className="submit">Continuar con la compra</button>
+          <FormButton onClick={handleSubmit}>
+            Continuar con la compra
+          </FormButton>
         </div>
       </div>
     </CartContainer>

@@ -4,6 +4,8 @@ import ProductsContainer from "../components/productsContainer";
 import Filter from "../components/filter";
 import Services from "../components/services";
 import FormButton from "../components/formButton";
+import useLogin from "../store/useLogin";
+import Title from "../components/title";
 
 const HomeSection = styled.section`
   box-sizing: border-box;
@@ -65,6 +67,7 @@ function Home() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPage, setProductsPage] = useState(6);
+  const {username} = useLogin();
 
   function filterProducts(name, price, category, order) {
     let newProducts = products.filter((prod) => {
@@ -113,9 +116,10 @@ function Home() {
       <div className="banner">
         <img src="../resources/banner.png" />
       </div>
+      {username&&<div className="product-title"><h1>Bienvenido {username}!</h1></div>}
       <Services />
       <div className="product-title">
-        <h2>Productos destacados</h2>
+        <h1>Productos destacados</h1>
       </div>
       <Filter handleSearch={filterProducts} />
       <ProductsContainer data={currentProducts} />
