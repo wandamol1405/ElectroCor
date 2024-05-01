@@ -6,12 +6,11 @@ const PORT = 3000;
 const session = require("express-session");
 const cors = require("cors");
 const categoryRouter = require("./routes/categoryRoutes");
-const cookieParser = require("cookie-parser");
 const saleOrderRouter = require("./routes/saleOrderRoutes");
 
 app.use(
 session({
-secret: "mysecret", // Clave secreta para firmar la sesión
+secret: "mysecret",
 resave: false,
 saveUninitialized: false,
 cookie: { maxAge: 60000 },
@@ -20,7 +19,7 @@ cookie: { maxAge: 60000 },
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use(cookieParser());
+
 
 app.use("/products", productsRouter);
 
