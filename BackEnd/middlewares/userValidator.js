@@ -1,7 +1,7 @@
 const { body, validationResult } = require('express-validator');
 const { readFileJSON } = require('../model');
 const bcrypt = require("bcrypt");
-const { getUsersArray } = require('../controller/usersController');
+const { findUser } = require('../controller/usersController');
 
 const validatorRegisterRules = [
     body("first_name").notEmpty().isString().withMessage("Nombre invalido"), 
@@ -34,8 +34,7 @@ const validatorLoginUser = async (req, res, next) => {
     }
   
     try {
-      const users = await getUsersArray();
-      const user = users.find((user) => user.usuario === usuario);
+      const user = await findUser(usuario);
       if (!user) {
         return res.status(400).json({ errors: "Credenciales inválidas" });
       }
