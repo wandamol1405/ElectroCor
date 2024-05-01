@@ -54,10 +54,10 @@ const PageExplorer = styled.div`
   width: 80vw;
   background-color: #ffffff;
   border-radius: 10px;
-  padding: 0.5rem;
   font-family: "Roboto Flex Normal";
   color: #4b484d;
   font-size: 1.5rem;
+  padding: 1rem;
 
   @media (min-width: 1080px) {
     width: 60vw;
@@ -79,7 +79,7 @@ function Home() {
 
     if (price > 0) {
       newProducts = newProducts.filter((prod) => {
-        return prod.price >= price;
+        return parseFloat(prod.price) <= price;
       });
     }
 

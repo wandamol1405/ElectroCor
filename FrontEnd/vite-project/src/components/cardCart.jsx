@@ -89,15 +89,12 @@ function CardCart({ product }) {
   const { updateItemQuantity, removeItem } = useCartStore();
 
   const handleChange = (event) => {
-    console.log(event.target.value);
     let newQuantity =
       quantity > event.target.value ? quantity - 1 : quantity + 1;
     setQuantity(newQuantity);
     updateItemQuantity(product.id_product, newQuantity);
-    console.log(newQuantity);
   };
 
-  console.log(quantity);
   return (
     <CardContainer>
       <div className="image">

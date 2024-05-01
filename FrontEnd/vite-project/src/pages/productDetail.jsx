@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import FormButton from "../components/formButton";
 import useCartStore from "../store/useCart";
@@ -68,6 +68,7 @@ function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState();
   const { addItem } = useCartStore();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getProducts() {
@@ -77,7 +78,7 @@ function ProductDetail() {
     }
     getProducts();
   }, []);
-  
+
   return (
     <ProductDetailContainer>
       <div className="product-img">
@@ -88,28 +89,24 @@ function ProductDetail() {
           <h1 style={{ fontSize: "1.7rem" }}>{product?.name}</h1>
           <h2 style={{ fontSize: "2rem" }}>${parsePrice(product?.price)}</h2>
         </div>
-          <FormButton
-            onClick={() => {
-              addItem(product);
-            }}
-            className="toCart"
-          >
-            <Link
-              to={"/cart"}
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              Agregar al carrito
-            </Link>
-          </FormButton>
-          <div className="product-detail">
-            <h4 style={{ fontSize: "2rem", textAlign: "center" }}>
-              Especificaciones
-            </h4>
-            <p style={{ fontSize: "1.5rem" }}>
-              {product?.description ||
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"}
-            </p>
-          </div>
+        <FormButton
+          onClick={() => {
+            addItem(product);
+            navigate("/cart");
+          }}
+          className="toCart"
+        >
+          Agregar al carrito
+        </FormButton>
+        <div className="product-detail">
+          <h4 style={{ fontSize: "2rem", textAlign: "center" }}>
+            Especificaciones
+          </h4>
+          <p style={{ fontSize: "1.5rem" }}>
+            {product?.description ||
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"}
+          </p>
+        </div>
       </div>
     </ProductDetailContainer>
   );

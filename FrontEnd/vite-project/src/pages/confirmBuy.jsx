@@ -61,12 +61,10 @@ function ConfirmBuy() {
   const [errors, setErrors] = useState([]);
 
   async function getUser() {
-    console.log(username);
     const response = await fetch(
       "http://localhost:3000/users/confirm-buy/" + username
     );
     const prod = await response.json();
-    console.log(prod);
     setUser(prod.data);
   }
 
