@@ -7,11 +7,9 @@ const FormButton = styled.button`
   border: 0;
   border-radius: 7px;
   font-size: 1rem;
-  margin: 1rem;
   align-content: center;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
-
   &:hover {
     background-color: #006e98;
     color: white;

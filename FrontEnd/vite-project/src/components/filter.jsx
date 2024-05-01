@@ -17,6 +17,9 @@ const FilterContainer = styled.div`
   color: #4b484d;
   font-size: 1.3rem;
 
+  h1{
+    font-size: 1.1rem;
+  }
   select {
     padding: 1rem;
     background-color: #e6e2e4;
@@ -32,19 +35,33 @@ const FilterContainer = styled.div`
   label {
     font-size: 0.7rem;
   }
-  button{
+  button {
     font-size: 1.2rem;
+  }
+  input,
+  select {
+    width: 8vw;
+  }
+  .buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  .buttons button{
+    padding:0.7rem;
+    font-size: 1rem;
   }
 
   @media (min-width: 1080px) {
     width: 58vw;
-    input,
-    select {
-      width: 10vw;
-      padding: 0.9rem;
+    h1{
+      font-size: 1.3rem;
     }
     label {
       font-size: 1rem;
+    }
+    .buttons button{
+      padding:0.7rem;
     }
   }
 `;
@@ -71,10 +88,17 @@ function Filter({ handleSearch }) {
     handleSearch(name, price, category, order);
   }
 
+  function handleClean() {
+    setName("");
+    setPrice("");
+    setCategory(0);
+    setOrder(false);
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <FilterContainer>
-        <div>Filtro</div>
+        <h1>Filtro</h1>
         <FormInput
           style={formInputsStyles}
           type="text"
@@ -111,7 +135,10 @@ function Filter({ handleSearch }) {
           />
           <label>Ordenar alfabéticamente</label>
         </div>
-        <FormButton>Buscar</FormButton>
+        <div className="buttons">
+          <FormButton>Buscar</FormButton>
+          <FormButton onClick={handleClean}>Limpiar</FormButton>
+        </div>
       </FilterContainer>
     </form>
   );

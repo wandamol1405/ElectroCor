@@ -35,9 +35,20 @@ const LoginContainer = styled.section`
     font-size: 1.1rem;
     margin: 1rem;
   }
-  .error{
-    font-size:1.25rem;
+  .error {
+    font-size: 1.25rem;
     color: red;
+  }
+  .logout {
+    background-color: #FFCCCC;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .logout button{
+    padding: 1rem 2rem;
+    width: 15vw;
+    font-size: 1.5rem;
   }
 
   @media (min-width: 1080px) {
@@ -53,8 +64,8 @@ const LoginContainer = styled.section`
       font-size: 1.4rem;
     }
     .form input {
-        width: 30vw;
-      }
+      width: 30vw;
+    }
   }
 `;
 
@@ -63,6 +74,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { login } = useLogin();
+  const { username } = useLogin();
+  const { logout } = useLogin();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -100,10 +113,10 @@ function Login() {
     }
 
     try {
-      const newProduct = { usuario: user, password: password };
+      const userLogin = { usuario: user, password: password };
       const response = await fetch("http://localhost:3000/users/login", {
         method: "post",
-        body: JSON.stringify(newProduct),
+        body: JSON.stringify(userLogin),
         headers: {
           "Content-Type": "application/json",
         },
@@ -115,7 +128,6 @@ function Login() {
 
       login(user);
       navigate("/");
-
     } catch (error) {
       setErrors((prev) => ({
         ...prev,
@@ -131,9 +143,45 @@ function Login() {
     }
   };
 
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:3000/users/logout", {
+        method: "post"
+      });
+      if (!response.ok) {
+        const message = await response.json();
+        throw new Error(message.error || "Ocurrió un error inesperado");
+      }
+
+      logout();
+    } catch (error) {
+      setErrors((prev) => ({
+        ...prev,
+        form: { message: "Credenciales invalidas" },
+      }));
+
+      setTimeout(() => {
+        setErrors((prev) => ({
+          ...prev,
+          form: null,
+        }));
+      }, 3000);
+    }
+  };
+  
+
   return (
     <LoginContainer>
-      <Title><h1>Hola! Inicia sesión para continuar</h1></Title>
+      {username !== "" && (
+        <Title className="logout">
+          <h1>Para volver a ingresar, debes cerrar session</h1>
+          <FormButton onClick={handleLogout}>Cerrar Sesion</FormButton>
+        </Title>
+      )}
+      <Title>
+        <h1>Hola! Inicia sesión para continuar</h1>
+      </Title>
       {errors.form && <h1 className="error">{errors.form.message}</h1>}
       <form onSubmit={handleSubmit}>
         <div className="form">
@@ -151,7 +199,9 @@ function Login() {
             name="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          {errors.password && <p className="error">{errors.password.message}</p>}
+          {errors.password && (
+            <p className="error">{errors.password.message}</p>
+          )}
           <FormButton type="submit">Ingresar</FormButton>
         </div>
       </form>

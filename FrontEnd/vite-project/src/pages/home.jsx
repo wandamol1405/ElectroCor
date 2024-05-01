@@ -41,6 +41,7 @@ const HomeSection = styled.section`
     }
     .product-title{
       width:58vw;
+      font-size: 2rem;
     }
   }
 `;
@@ -56,9 +57,11 @@ const PageExplorer = styled.div`
   padding: 0.5rem;
   font-family: "Roboto Flex Normal";
   color: #4b484d;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+
   @media (min-width: 1080px) {
     width: 60vw;
+    padding: 1rem;
   }
 `;
 

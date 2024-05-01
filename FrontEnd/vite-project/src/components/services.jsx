@@ -45,7 +45,7 @@ const ServicesContainer = styled.div`
       height: 6rem;
     }
     p {
-      font-size: 1.1rem;
+      font-size: 1.3rem;
     }
     .product-title {
       width: 80vw;
@@ -62,7 +62,7 @@ function Services() {
       </div>
       <div className="envios-gratis">
         <img src="../resources/truck-removebg-preview.png" />
-        <p>Envíos gratis a partir de los $10000</p>
+        <p>Envíos gratis a partir de los $10.000</p>
       </div>
       <div className="servicio-tecnico">
         <img src="../resources/tools.png" />

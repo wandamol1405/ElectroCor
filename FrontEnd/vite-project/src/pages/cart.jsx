@@ -6,6 +6,7 @@ import Title from "../components/title";
 import useLogin from "../store/useLogin";
 import FormButton from "../components/formButton";
 import { useNavigate } from "react-router-dom";
+import parsePrice from "../fuctions/parsePrice";
 
 const CartContainer = styled.section`
   box-sizing: border-box;
@@ -77,6 +78,7 @@ const CartContainer = styled.section`
 function Cart() {
   const { items } = useCartStore();
   const [price, setPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
   const products = Object.values(items);
   const costDelivery = "2000";
   const { username } = useLogin();
@@ -85,7 +87,7 @@ function Cart() {
   const [withoutProducts, setwithoutProducts] = useState(false);
 
   function handleSubmit() {
-    if (!username) {
+    if (!username||username=="admin") {
       setCantBuy(true);
     } else if (!price) {
       setwithoutProducts(true);
@@ -95,11 +97,13 @@ function Cart() {
   }
 
   useEffect(() => {
-    const totalPrice = products.reduce(
-      (acc, p) => acc + parseFloat(p.price).toFixed(2) * parseInt(p.quantity),
+    const totalProductsPrice = products.reduce(
+      (acc, p) => acc + parseFloat(p.price) * parseInt(p.quantity),
       0
     );
-    setPrice(totalPrice);
+    setPrice(totalProductsPrice);
+    const totalPrice = totalProductsPrice+((totalProductsPrice>10000||totalProductsPrice==0)?0:parseFloat(2000));
+    setTotalPrice(totalPrice);
   }, [products]);
 
   return (
@@ -107,7 +111,7 @@ function Cart() {
       <Title>
         <h1>Carrito de compras</h1>
       </Title>
-      {cantBuy && <Title style={{backgroundColor: "#FFCCCC"}}><h2>Debe ingresar para realizar la compra</h2></Title>}
+      {cantBuy && <Title style={{backgroundColor: "#FFCCCC"}}>{username=="admin"?<h2>No debe ingresar como admin para comprar</h2>:<h2>Debe ingresar para realizar la compra</h2>}</Title>}
       {withoutProducts && <Title style={{backgroundColor: "#FFCCCC"}}><h1>No hay productos en el carrito</h1></Title>}
       <div className="products">
         <div className="products-description">
@@ -121,22 +125,19 @@ function Cart() {
             <tbody>
               <tr>
                 <td>Productos</td>
-                <td>${price}</td>
+                <td>${parsePrice(price)}</td>
               </tr>
               <tr>
                 <td>Envío</td>
                 <td>
-                  {price > 10000 || price == 0 ? "Gratis" : `$${costDelivery}`}
+                  {price > 10000 || price == 0 ? "Gratis" : `$${parsePrice(costDelivery)}`}
                 </td>
               </tr>
               <tr>
                 <th>Total</th>
                 <th>
                   $
-                  {price +
-                    (price > 10000 || price == 0
-                      ? 0
-                      : parseFloat(costDelivery))}
+                  {parsePrice(totalPrice)}
                 </th>
               </tr>
             </tbody>

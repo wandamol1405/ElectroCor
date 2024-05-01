@@ -82,6 +82,7 @@ function Register() {
   const [birthDate, setBirthDate] = useState("");
   const [postalCode, setPostalCode] = useState(0);
   const [errors, setErrors] = useState({});
+  const [address, setAddress] = useState("");
   const { login } = useLogin();
   const navigate = useNavigate();
 
@@ -148,6 +149,7 @@ function Register() {
         password: password,
         birth_date: birthDate,
         postal_code: postalCode,
+        address: address
       };
       const response = await fetch("http://localhost:3000/users/register", {
         method: "post",
@@ -228,6 +230,14 @@ function Register() {
               onChange={(e) => setPassword(e.target.value)}
             />
             {errors.password && <p className="error">{errors.password.message}</p>}
+          </div>
+          <div className="form-content">
+            <label for="address">Domicilio:</label>
+            <FormInput
+              type="text"
+              name="address"
+              onChange={(e) => setAddress(e.target.value)}
+            />
           </div>
           <div className="birth-cp">
             <div className="form-content">

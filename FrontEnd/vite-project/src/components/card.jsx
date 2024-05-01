@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import parsePrice from "../fuctions/parsePrice";
 
-const Product = styled.div`
+const Product = styled(Link)`
   display: flex;
   flex-direction: row;
   gap: 1.5rem;
@@ -10,6 +11,7 @@ const Product = styled.div`
   background-color: #ffffff;
   border-radius: 10px;
   padding: 1.5rem;
+  text-decoration: none;
 
   img {
     width: 8rem;
@@ -19,6 +21,7 @@ const Product = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    color: #4b484d;
   }
   .product-description h4 {
     font-size: 1.5rem;
@@ -30,27 +33,18 @@ const Product = styled.div`
     align-items: center;
 
     .product-description h4 {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
     }
   }
 `;
 
-const TitleLinked = styled(Link)`
-text-decoration: none;
-color: #4b484d;
-font-size: 1.4rem;
-@media (min-width: 1080px) {
-  font-size: 1.1rem;
-}
-`;
-
 function Card({ title, price, img, id }) {
   return (
-    <Product>
+    <Product to={`/products/${id}`}>
       <img src={img} />
       <div className="product-description">
-        <TitleLinked to={`/products/${id}`}>{title}</TitleLinked>
-        <h4>${price}</h4>
+        <h1 style={{ fontSize: "1.4rem" }}>{title}</h1>
+        <h4>${parsePrice(price)}</h4>
       </div>
     </Product>
   );

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import FormButton from "./formButton";
 import useCartStore from "../store/useCart";
+import parsePrice from "../fuctions/parsePrice";
 
 const CardContainer = styled.div`
   display: flex;
@@ -117,7 +118,7 @@ function CardCart({ product }) {
             />
           </form>
           <FormButton onClick={()=>{removeItem(product.id_product)}}>Eliminar</FormButton>
-          <h4>${product.price}</h4>
+          <h4>${parsePrice(product.price)}</h4>
         </div>
       </div>
     </CardContainer>
